@@ -19,8 +19,9 @@ interface MapComponentProps {
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({
-  geoserverUrl = "http://localhost:8080/geoserver/wms",
-  layerName = "cite:example",
+  geoserverUrl = import.meta.env.VITE_GEOSERVER_URL ||
+    "http://localhost:8080/geoserver/wms",
+  layerName = import.meta.env.VITE_LAYER_NAME || "cite:example",
   onFeatureClick = () => {},
   visible = true,
 }) => {

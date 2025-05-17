@@ -22,7 +22,7 @@ interface FeatureInfoPanelProps {
     id: string;
     type: string;
     properties: FeatureProperty[];
-  };
+  } | null;
   onClose?: () => void;
   isOpen?: boolean;
 }

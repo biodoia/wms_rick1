@@ -60,21 +60,18 @@ const Home = () => {
         {/* Map container */}
         <div className="flex-1 relative">
           <Map
-            wmsUrl={wmsLayer.url}
-            wmsLayers={wmsLayer.layers}
-            layerVisible={layerVisible}
+            geoserverUrl={wmsLayer.url}
+            layerName={wmsLayer.layers}
+            visible={layerVisible}
             onFeatureClick={handleFeatureClick}
           />
 
           {/* Feature info panel - conditionally rendered */}
-          {isPanelOpen && selectedFeature && (
-            <div className="absolute top-4 right-4 z-10">
-              <FeatureInfoPanel
-                feature={selectedFeature}
-                onClose={handleClosePanel}
-              />
-            </div>
-          )}
+          <FeatureInfoPanel
+            feature={selectedFeature}
+            onClose={handleClosePanel}
+            isOpen={isPanelOpen}
+          />
         </div>
       </div>
 

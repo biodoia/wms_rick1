@@ -19,9 +19,8 @@ interface MapComponentProps {
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({
-  geoserverUrl = import.meta.env.VITE_GEOSERVER_URL ||
-    "http://localhost:8080/geoserver/wms",
-  layerName = import.meta.env.VITE_LAYER_NAME || "cite:example",
+  geoserverUrl = "http://localhost:8080/geoserver/wms",
+  layerName = "cite:example",
   onFeatureClick = () => {},
   visible = true,
 }) => {
@@ -95,7 +94,12 @@ const MapComponent: React.FC<MapComponentProps> = ({
           evt.coordinate,
           viewResolution,
           "EPSG:3857",
-          { INFO_FORMAT: "application/json" },
+          {
+            INFO_FORMAT: "application/json",
+            REQUEST: "GetFeatureInfo",
+            SERVICE: "WMS",
+            VERSION: "1.3.0",
+          },
         );
 
         if (url) {

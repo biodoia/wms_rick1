@@ -10,10 +10,14 @@ import {
 } from "@/components/ui/card";
 
 interface LayerControlProps {
-  layerName?: string;
-  layerDescription?: string;
-  isVisible?: boolean;
-  onToggleVisibility?: (visible: boolean) => void;
+  layer?: {
+    name: string;
+    description: string;
+    url?: string;
+    layers?: string;
+  };
+  visible?: boolean;
+  onToggle?: (visible: boolean) => void;
 }
 
 const LayerControl = ({
@@ -40,11 +44,11 @@ const LayerControl = ({
       <CardContent>
         <div className="flex items-center justify-between space-x-2">
           <Label htmlFor="layer-visibility" className="cursor-pointer">
-            {visible ? "Visible" : "Hidden"}
+            {isVisible ? "Visible" : "Hidden"}
           </Label>
           <Switch
             id="layer-visibility"
-            checked={visible}
+            checked={isVisible}
             onCheckedChange={handleToggle}
           />
         </div>
